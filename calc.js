@@ -47,3 +47,43 @@ btnholder.appendChild(btminus);
 btnholder.appendChild(bttimes);
 btnholder.appendChild(btdiv);
 
+const inputField = document.createElement("input");
+
+
+
+const createNumButton = function() {
+    const num = arguments[0];
+    const btn = document.createElement('button');
+    btn.textContent = num;
+    btn.classList.add("numButton")
+    return btn;
+}
+
+const addNumButtons = function() {
+    const numButtonHolder = document.querySelector("#numButtons");
+    const row1 = document.createElement("div");
+
+    row1.style.display = "flex";
+    row1.style.flexDirection = "row";
+    row1.classList.add("rowNumButtons");
+
+    for (let i = 0; i < 5; i++) {
+        row1.appendChild(createNumButton(i));
+    }
+
+    const row2 = document.createElement("div");
+
+    row2.style.display = "flex";
+    row2.style.flexDirection = "row";
+    row2.classList.add("rowNumButtons");
+
+    for (let i = 5; i < 10; i++) {
+        row2.appendChild(createNumButton(i));
+    }
+    numButtonHolder.appendChild(row1);
+    numButtonHolder.appendChild(row2);
+}
+
+addNumButtons();
+
+
