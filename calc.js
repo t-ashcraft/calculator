@@ -1,17 +1,17 @@
 const add = function() {
-    return arguments[0] + arguments[1];
+    return parseFloat(arguments[0]) + parseFloat(arguments[1]);
 }
 
 const sub = function() {
-    return arguments[0] - arguments[1];
+    return parseFloat(arguments[0]) - parseFloat(arguments[1]);
 }
 
 const mult = function() {
-    return arguments[0] * arguments[1];
+    return parseFloat(arguments[0]) * parseFloat(arguments[1]);
 }
 
 const div = function() {
-    return arguments[0] / arguments[1];
+    return parseFloat(arguments[0]) / parseFloat(arguments[1]);
 }
 
 const equals = function() {
@@ -67,9 +67,17 @@ const opClick = function(e) {
 }
 
 const eqClick = function(e) {
-    const curInput = inputField.textContent;
+    let curInput = inputField.textContent;
+    let hasNegative = false
+    if (curInput[0] == "-") {
+        hasNegative = true;
+        curInput = curInput.substring(1);
+    }
     if (hasOp(curInput)) {
         let inputs = curInput.split(/[+\-x\/]/);
+        if (hasNegative) {
+            inputs[0] = "-" + inputs[0];
+        }
         console.log(inputs[0], inputs[1], hasOp(curInput));
         inputField.textContent = equals(inputs[0], hasOp(curInput), inputs[1]);
     }
