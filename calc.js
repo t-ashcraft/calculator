@@ -30,15 +30,35 @@ const equals = function() {
     }
 }
 
+const inputField = document.createElement("h1");
+const inputHolder = document.querySelector("#top");
+
+
+
+
+inputHolder.appendChild(inputField);
+
 const btplus = document.createElement("button");
 const btminus = document.createElement("button");
 const bttimes = document.createElement("button");
 const btdiv = document.createElement("button");
+const bteq = document.createElement("button");
 
 btplus.textContent = "+";
 btminus.textContent = "-";
 bttimes.textContent = "x";
 btdiv.textContent = "/";
+bteq.textContent = "=";
+
+const opClick = function(e) {
+    inputField.textContent += (e.target.textContent)
+}
+
+btplus.addEventListener("click", opClick);
+btminus.addEventListener("click", opClick);
+bttimes.addEventListener("click", opClick);
+btdiv.addEventListener("click", opClick);
+
 
 const btnholder = document.querySelector("#buttons");
 
@@ -46,8 +66,15 @@ btnholder.appendChild(btplus);
 btnholder.appendChild(btminus);
 btnholder.appendChild(bttimes);
 btnholder.appendChild(btdiv);
+btnholder.appendChild(bteq);
 
-const inputField = document.createElement("input");
+
+
+const buttonClick = function(e) {
+    inputField.textContent += (e.target.textContent)
+}
+
+
 
 
 
@@ -56,6 +83,7 @@ const createNumButton = function() {
     const btn = document.createElement('button');
     btn.textContent = num;
     btn.classList.add("numButton")
+    btn.addEventListener("click", buttonClick);
     return btn;
 }
 
