@@ -50,14 +50,36 @@ bttimes.textContent = "x";
 btdiv.textContent = "/";
 bteq.textContent = "=";
 
+const hasOp = function(str) {
+    for (let i = 0; i < str.length; i++) {
+        const cur = str[i];
+        if (cur == "+" || cur == "-" || cur == "x" || cur == "/") {
+            return cur;
+        }
+    }
+    return false;
+}
+
+
+
 const opClick = function(e) {
-    inputField.textContent += (e.target.textContent)
+    inputField.textContent += (e.target.textContent);
+}
+
+const eqClick = function(e) {
+    const curInput = inputField.textContent;
+    if (hasOp(curInput)) {
+        let inputs = curInput.split(/[+\-x\/]/);
+        console.log(inputs[0], inputs[1], hasOp(curInput));
+        inputField.textContent = equals(inputs[0], hasOp(curInput), inputs[1]);
+    }
 }
 
 btplus.addEventListener("click", opClick);
 btminus.addEventListener("click", opClick);
 bttimes.addEventListener("click", opClick);
 btdiv.addEventListener("click", opClick);
+bteq.addEventListener("click", eqClick);
 
 
 const btnholder = document.querySelector("#buttons");
