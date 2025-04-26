@@ -187,6 +187,8 @@ document.addEventListener('keydown', function(e) {
         buttonClick(e.key);
     } else if (e.key === "Backspace") {
         clear();
+    } else if (e.key === "*") {
+        opClick("x");
     }
 })
 
