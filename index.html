@@ -9,23 +9,45 @@
         button {
             padding: 16px;
         }
-        
+
         body {
-            display: flex;
-            flex-direction: column;
+            display:flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #numButtons {
             
             display: flex;
             flex-direction: column;
-        
+            align-items:center;
+        }
+
+        #top {
+            width:200px;
+            height:100px;
+            font-size:large;
+            background-color: white;
+            margin:8px;
+        }
+
+        #calc {
+            background-color: blueviolet;
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
         }
     </style>
 </head>
 <body>
-    <div id="top"></div>
-    <div id="buttons"></div>
-    <div id="numButtons"></div>
+    <div id="calc">
+        <div id="top"></div>
+        <div id="buttons"></div>
+        <div id="numButtons"></div>
+    </div>
+    
 </body>
 </html>

@@ -1,19 +1,23 @@
 let isLastInputOp = true;
 
+function round(number) {
+    return Math.round(number * 1000) / 1000;
+  }
+
 const add = function() {
-    return parseFloat(arguments[0]) + parseFloat(arguments[1]);
+    return round(parseFloat(arguments[0]) + parseFloat(arguments[1]));
 }
 
 const sub = function() {
-    return parseFloat(arguments[0]) - parseFloat(arguments[1]);
+    return round(parseFloat(arguments[0]) - parseFloat(arguments[1]));
 }
 
 const mult = function() {
-    return parseFloat(arguments[0]) * parseFloat(arguments[1]);
+    return round(parseFloat(arguments[0]) * parseFloat(arguments[1]));
 }
 
 const div = function() {
-    return parseFloat(arguments[0]) / parseFloat(arguments[1]);
+    return round(parseFloat(arguments[0]) / parseFloat(arguments[1]));
 }
 
 const equals = function() {
@@ -163,9 +167,11 @@ const addNumButtons = function() {
     const clearButton = document.createElement("button");
     clearButton.textContent = "Clear";
     clearButton.addEventListener("click", clear);
-    clearButton.style.maxWidth = "210px";
+    clearButton.style.width = "210px";
     numButtonHolder.appendChild(clearButton);
 }
 
 addNumButtons();
+
+
 
