@@ -68,7 +68,7 @@ const hasOp = function(str) {
 
 
 
-const opClick = function(e) {
+const opClick = function(op) {
     if (isLastInputOp) {
         return;
     }
@@ -77,8 +77,14 @@ const opClick = function(e) {
         eqClick();
     }
     isLastInputOp = true;
-    inputField.textContent += (e.target.textContent);
+    inputField.textContent += (op);
 }
+
+const clear = function() {
+    inputField.textContent = "";
+    isLastInputOp = true;
+}
+
 
 const eqClick = function(e) {
     if (isLastInputOp) {
@@ -96,14 +102,15 @@ const eqClick = function(e) {
             inputs[0] = "-" + inputs[0];
         }
         console.log(inputs[0], inputs[1], hasOp(curInput));
-        inputField.textContent = equals(inputs[0], hasOp(curInput), inputs[1]);
+        console.log(equals(inputs[0], hasOp(curInput), inputs[1]));
+        inputField.textContent = equals(inputs[0], hasOp(curInput), inputs[1]).toString();
     }
 }
 
-btplus.addEventListener("click", opClick);
-btminus.addEventListener("click", opClick);
-bttimes.addEventListener("click", opClick);
-btdiv.addEventListener("click", opClick);
+btplus.addEventListener("click", () => opClick("+"));
+btminus.addEventListener("click", () => opClick("-"));
+bttimes.addEventListener("click", () => opClick("x"));
+btdiv.addEventListener("click", () => opClick("/"));
 bteq.addEventListener("click", eqClick);
 
 
@@ -117,9 +124,9 @@ btnholder.appendChild(bteq);
 
 
 
-const buttonClick = function(e) {
+const buttonClick = function(key) {
     isLastInputOp = false;
-    inputField.textContent += (e.target.textContent)
+    inputField.textContent += (key)
 }
 
 
@@ -131,14 +138,10 @@ const createNumButton = function() {
     const btn = document.createElement('button');
     btn.textContent = num;
     btn.classList.add("numButton")
-    btn.addEventListener("click", buttonClick);
+    btn.addEventListener("click", () => buttonClick(num));
     return btn;
 }
 
-const clear = function() {
-    inputField.textContent = "";
-    isLastInputOp = true;
-}
 
 const addNumButtons = function() {
     const numButtonHolder = document.querySelector("#numButtons");
@@ -173,5 +176,17 @@ const addNumButtons = function() {
 
 addNumButtons();
 
-
+document.addEventListener('keydown', function(e) {
+    e.preventDefault();
+    if (e.key === "Enter" || e.key === "=") {
+        eqClick(e);
+    }
+    else if (/[+\-x\/]/.test(e.key)) {
+        opClick(e.key);
+    } else if (/[0-9]/.test(e.key)) {
+        buttonClick(e.key);
+    } else if (e.key === "Backspace") {
+        clear();
+    }
+})
 
