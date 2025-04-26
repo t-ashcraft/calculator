@@ -1,3 +1,5 @@
+let isLastInputOp = true;
+
 const add = function() {
     return parseFloat(arguments[0]) + parseFloat(arguments[1]);
 }
@@ -63,10 +65,21 @@ const hasOp = function(str) {
 
 
 const opClick = function(e) {
+    if (isLastInputOp) {
+        return;
+    }
+    let curInput = inputField.textContent;
+    if (hasOp(curInput)) {
+        eqClick();
+    }
+    isLastInputOp = true;
     inputField.textContent += (e.target.textContent);
 }
 
 const eqClick = function(e) {
+    if (isLastInputOp) {
+        return;
+    }
     let curInput = inputField.textContent;
     let hasNegative = false
     if (curInput[0] == "-") {
@@ -101,6 +114,7 @@ btnholder.appendChild(bteq);
 
 
 const buttonClick = function(e) {
+    isLastInputOp = false;
     inputField.textContent += (e.target.textContent)
 }
 
