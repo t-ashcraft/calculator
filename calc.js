@@ -131,6 +131,11 @@ const createNumButton = function() {
     return btn;
 }
 
+const clear = function() {
+    inputField.textContent = "";
+    isLastInputOp = true;
+}
+
 const addNumButtons = function() {
     const numButtonHolder = document.querySelector("#numButtons");
     const row1 = document.createElement("div");
@@ -154,8 +159,13 @@ const addNumButtons = function() {
     }
     numButtonHolder.appendChild(row1);
     numButtonHolder.appendChild(row2);
+    
+    const clearButton = document.createElement("button");
+    clearButton.textContent = "Clear";
+    clearButton.addEventListener("click", clear);
+    clearButton.style.maxWidth = "210px";
+    numButtonHolder.appendChild(clearButton);
 }
 
 addNumButtons();
-
 
